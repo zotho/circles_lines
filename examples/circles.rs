@@ -233,7 +233,7 @@ impl State {
         let example = Example::Line;
 
         let (mut circles, edges) = match example {
-            Example::Line => get_line(40, 27.0),
+            Example::Line => get_line(40, 25.0),
             Example::Grid => get_grid(6, 6, 60.0),
             Example::ThreePoints => {
                 let circles = vec![
@@ -408,7 +408,7 @@ fn handle_touch(state: &mut State) {
     if mouse.is_click() {
         debug_assert!(state.touched_circle.is_none());
         if let Some(touched_circle) = state.circles.iter().enumerate().find_map(|(i, c)| {
-            let test = |mouse_pos: Vec2| mouse_pos.distance(c.pos) < c.radius + 10.0;
+            let test = |mouse_pos: Vec2| mouse_pos.distance(c.pos) < c.radius + 20.0;
             (test(mouse.pos) && mouse.track.iter().copied().any(test)).then_some(i)
         }) {
             state.touched_circle = Some(touched_circle);
